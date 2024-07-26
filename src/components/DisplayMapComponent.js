@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { GoogleMap, LoadScript, Marker } from "@vis.gl/react-google-maps";
-import { db } from "./firebaseConfig";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
-const DisplayMapComponent = () => {
-  const [markerPosition, setMarkerPosition] = useState(null);
+const MapRedirectComponent = () => {
+  const { locationId } = useParams();
+  const [locationData, setLocationData] = React.useState(null);
 
   useEffect(() => {
     const fetchLocation = async () => {
-      const docRef = doc(db, "locations", "locationId");
-      const docSnap = await getDoc(docRef);
+      if (locationId) {
+        try {
+          const docRef = doc(db, "locations", locationId);
+          const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        setMarkerPosition(docSnap.data());
-      } else {
-        console.log("No such document!");
+          if (docSnap.exists()) {
+            setLocationData(docSnap.data());
+          } else {
+            console.log("No such document!");
+          }
+        } catch (error) {
+          console.error("Error fetching location data", error);
+        }
       }
     };
 
     fetchLocation();
-  }, []);
+  }, [locationId]);
 
-  return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-      <GoogleMap
-        mapContainerStyle={{ width: "100%", height: "400px" }}
-        center={markerPosition || { lat: -3.745, lng: -38.523 }}
-        zoom={10}
-      >
-        {markerPosition && <Marker position={markerPosition} />}
-      </GoogleMap>
-    </LoadScript>
-  );
+  useEffect(() => {
+    if (locationData) {
+      const { lat, lng } = locationData;
+      const googleMapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+      window.location.href = googleMapsUrl; // 自動的にリダイレクト
+    }
+  }, [locationData]);
+
+  return <p>Redirecting...</p>; // リダイレクト中のメッセージ
 };
 
-export default DisplayMapComponent;
+export default MapRedirectComponent;
