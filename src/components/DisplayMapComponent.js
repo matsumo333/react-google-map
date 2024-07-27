@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 const MapRedirectComponent = () => {
   const { locationId } = useParams();
-  const [locationData, setLocationData] = React.useState(null);
+  const [locationData, setLocationData] = useState(null);
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -32,7 +32,7 @@ const MapRedirectComponent = () => {
     if (locationData) {
       const { lat, lng } = locationData;
       const googleMapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
-      window.location.href = googleMapsUrl; // 自動的にリダイレクト
+      window.location.href = googleMapsUrl; // 外部リンクにリダイレクト
     }
   }, [locationData]);
 

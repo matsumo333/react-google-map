@@ -38,9 +38,11 @@ const MapComponent = () => {
 
   return (
     <Map
-      style={{ width: "100%", height: "400px" }}
+      style={{ width: "100%", height: "100vh" }}
       defaultCenter={{ lat: 35.658584, lng: 139.745433 }}
       defaultZoom={15}
+      gestureHandling={"greedy"}
+      disableDefaultUI={true}
       onClick={handleMapClick}
     >
       {markerPosition && <Marker position={markerPosition} />}
