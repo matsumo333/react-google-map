@@ -1,38 +1,50 @@
-.App {
-  text-align: center;
-  background-color: chartreuse;
+/* styles.css */
+html, body {
+  height: 100%;
+  margin: 0; /* マージンをゼロに設定 */
 }
 
-body{
-  background-color: chartreuse;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #43c53c;
-  min-height: 100vh;
+#root {
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* 縦方向に配置 */
+  width: 600px;
+  height: 1000px; /* 高さも設定することをお勧めします */
+  position: relative;
+  margin-top: 20px;
+}
+.map-title{
+  font-size: 30px;
+  font-weight: 600;
+  padding: 5px 10px 0 0;
+  text-align: center;
+  width: 250px;
+  margin: 10px 0;
+  background-color: blue;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.content {
+  flex: 1;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.map-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.tizudayo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  background-color: white; /* 背景色を指定してテキストを見やすくします */
+  z-index: 10; /* 地図の上に表示されるようにする */
 }
