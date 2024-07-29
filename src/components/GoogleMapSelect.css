@@ -1,62 +1,82 @@
 html, body {
-    height: 100%;
-    margin: 0; /* マージンをゼロに設定 */
-  }
-  
-  #root {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column; /* 縦方向に配置 */
-    width: 600px;
-    height: 1000px; /* 高さも設定することをお勧めします */
-    position: relative;
-    margin-top: 20px;
-  }
-  
-  .map-title {
-    font-size: 30px;
-    font-weight: 600;
-    padding: 5px 10px 0 0;
-    text-align: center;
-    width: 100%; /* フル幅を指定 */
-    margin: 10px 0;
-    background-color: blue;
-    color: white;
-  }
-  
-  .content {
-    flex: 1;
-    position: relative;
-    width: 80%;
-    margin: 10px auto;
-  }
-  
-  .map-wrapper {
-    flex: 1;
-    width: 100%;
-    height: 80%; /* 地図の高さを調整 */
-  }
-  
-  .form-container {
-    padding: 1rem;
-    flex-basis: 200px; 
-    height:100%;
-    overflow: auto;
-    border: solid 20px purple;
-  }
-  
-  .tizudayo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    background-color: white; /* 背景色を指定してテキストを見やすくします */
-    z-index: 10; /* 地図の上に表示されるようにする */
-  }
-  
+  height: 100%;
+  margin: 0; /* マージンをゼロに設定 */
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* 縦方向に配置 */
+  width: 600px;
+  height: 1000px; /* 高さも設定することをお勧めします */
+  position: relative;
+  margin-top: 20px;
+}
+
+.content {
+  width: 90%;
+  height: 400px !important;
+  margin: 10px auto;
+  border: solid 1px blue;
+  position: relative; 
+}
+
+.content button {
+  position: absolute;
+  margin: 24px 0;
+  right: 0;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.map-title {
+  font-size: 30px;
+  font-weight: 600;
+  padding: 5px 10px 0 0;
+  text-align: center;
+  width: 90%; /* フル幅を指定 */
+  margin: 10px auto;
+  background-color: blue;
+  color: white;
+}
+
+.content-map {
+  position: relative; /* 四角形を中央に配置するために必要 */
+  width: 100%;
+  height: 100%;
+}
+
+.center-square {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: solid 2px red;
+  transform: translate(-50%, -50%); /* 中心に合わせるための調整 */
+  top: 50%; /* 縦の中心 */
+  left: 50%; /* 横の中心 */
+  z-index: 10; /* 地図の上に表示されるようにする */
+}
+.center-square2 {
+  position: absolute;
+  background-color: transparent;
+  width: 38px;
+  height: 38px;
+  border: solid 2px red;
+  transform: translate(-50%, -50%); /* 中心に合わせるための調整 */
+  top: 50%; /* 縦の中心 */
+  left: 50%; /* 横の中心 */
+  z-index: 9; /* 地図の上に表示されるようにする */
+}
