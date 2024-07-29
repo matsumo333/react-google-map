@@ -13,15 +13,15 @@ html, body {
 .container {
   display: flex;
   flex-direction: column; /* 縦方向に配置 */
-  width: 600px;
-  height: 1000px; /* 高さも設定することをお勧めします */
+  width: 1000px;
+  height: 1500px; /* 高さも設定することをお勧めします */
   position: relative;
   margin-top: 20px;
 }
 
 .content {
   width: 90%;
-  height: 400px !important;
+  height: 800px !important;
   margin: 10px auto;
   border: solid 1px blue;
   position: relative; 

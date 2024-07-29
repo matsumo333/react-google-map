@@ -40,6 +40,11 @@ const GoogleMapSelect = () => {
    * Firestoreに位置情報を保存する関数
    */
   const saveLocation = async () => {
+    if (zoom < 19) {
+      alert("もう少し拡大して位置を指定してください。");
+      return;
+    }
+
     try {
       // 現在の地図の中心を位置情報として保存
       const position = {
@@ -92,20 +97,23 @@ const GoogleMapSelect = () => {
         <button className="save-button" onClick={saveLocation}>
           この地点を指定する
         </button>
-        {/* 以下の部分を削除またはコメントアウト */}
-        {/* <div className="coordinates">
-          <p>赤い四角の緯度: {center.lat.toFixed(6)}</p>
-          <p>赤い四角の経度: {center.lng.toFixed(6)}</p>
-        </div> */}
       </div>
     </div>
   );
 };
 
+/**
+ * 様々な引数に基づき、googleMapを表示
+ * @param {*} param0
+ * @returns
+ */
 const Map = ({ onCenterChange, children, style, options, ...otherProps }) => {
-  const ref = React.useRef(null);
-  const [map, setMap] = React.useState(null);
+  const ref = React.useRef(null); //dom情報を設定
+  const [map, setMap] = React.useState(null); //Mapに関する各種情報を保持
 
+  /**
+   * dom情報があって、map情報がない場合、新しい地図を表示
+   */
   React.useEffect(() => {
     if (ref.current && !map) {
       const newMap = new window.google.maps.Map(ref.current, options);
